@@ -11,4 +11,4 @@ d=$(date)
 
 echo "Hi ${name} ${last_name}"
 echo "Working in $working_directory"
-echo "$d"
+echo "THe system time and date is $d"
