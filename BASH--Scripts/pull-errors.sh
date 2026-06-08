@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#this will pull error message from syslog data
+
+#Author: Joey Chapa
+#Date: 6/8/2026
+
+
+
+grep -i fail /home/jchapa30/Devops/BASH--Scripts/BASH--Scripts/syslog > /home/jchapa30/Devops/BASH--Scripts/BASH--Scripts/output-error
