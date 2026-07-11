@@ -7,4 +7,6 @@
 
 
 
-grep -i fail /home/jchapa30/Devops/BASH--Scripts/BASH--Scripts/syslog
+SYSLOG="${SYSLOG:-/home/jchapa30/Devops/BASH--Scripts/BASH--Scripts/syslog}"
+
+grep -i fail "$SYSLOG"

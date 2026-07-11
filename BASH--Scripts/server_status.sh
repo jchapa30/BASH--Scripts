@@ -6,7 +6,7 @@
 
 #Check server connectivity
 
-hosts="192.168.1.101"
+hosts="${HOSTS:-192.168.1.101}"
 
 ping -c1 $hosts
 

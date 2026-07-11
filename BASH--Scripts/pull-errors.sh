@@ -7,4 +7,7 @@
 
 
 
-grep -i fail /home/jchapa30/Devops/BASH--Scripts/BASH--Scripts/syslog > /home/jchapa30/Devops/BASH--Scripts/BASH--Scripts/output-error
+SYSLOG="${SYSLOG:-/home/jchapa30/Devops/BASH--Scripts/BASH--Scripts/syslog}"
+OUTPUT="${OUTPUT:-/home/jchapa30/Devops/BASH--Scripts/BASH--Scripts/output-error}"
+
+grep -i fail "$SYSLOG" > "$OUTPUT"
