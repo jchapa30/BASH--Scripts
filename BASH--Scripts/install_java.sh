@@ -1,13 +1,9 @@
 #!/bin/bash
 
-command="java"
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+# shellcheck source=lib/system_utils.sh
+source "$SCRIPT_DIR/lib/system_utils.sh"
 
-if command -v "$command" >/dev/null 2>&1
-then
-    echo "$command is available"
-    "$command" -version
-else
-    echo "$command is not available, installing it..."
-    sudo apt update
-    sudo apt install -y default-jdk
-fi
+ensure_apt_package "java" "default-jdk"
+
+java -version
