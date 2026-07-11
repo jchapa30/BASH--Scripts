@@ -1,15 +1,9 @@
 #!/bin/bash
 
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+# shellcheck source=lib/system_utils.sh
+source "$SCRIPT_DIR/lib/system_utils.sh"
 
-command=htop
+ensure_apt_package "htop"
 
-
-if command -v $command
-then
-   echo $command is avaliable
-else
-   echo $command is not avaliable, installing it.
-   sudo apt update && sudo apt install -y $command
-fi
-
-$command
+htop

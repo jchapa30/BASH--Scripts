@@ -1,10 +1,14 @@
 #!/bin/bash
 
-#this will pull error message from syslog data
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+# shellcheck source=lib/system_utils.sh
+source "$SCRIPT_DIR/lib/system_utils.sh"
+
+#this will pull warning messages from syslog data
 
 #Author: Joey Chapa
 #Date: 6/8/2026
 
+syslog_file="${1:-$SCRIPT_DIR/syslog}"
 
-
-grep -i fail /home/jchapa30/Devops/BASH--Scripts/BASH--Scripts/syslog
+filter_log "warning" "$syslog_file"
