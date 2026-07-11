@@ -4,13 +4,17 @@
 #Date: 6/6/26
 #Description:
 
-a=$("hostname")
+set -uo pipefail
 
-echo Hello $USER,your hostname is $a.
+if ! a=$(hostname); then
+    echo "Error: failed to determine hostname." >&2
+    exit 1
+fi
+
+echo "Hello $USER, your hostname is $a."
 echo
 echo What is your name?
-read b
+read -r b
 echo
-echo Hello $b
+echo "Hello $b"
 echo
-

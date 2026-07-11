@@ -6,13 +6,14 @@
 
 #Check server connectivity
 
+set -uo pipefail
+
 hosts="192.168.1.101"
 
-ping -c1 $hosts
-
-if [ $? -eq 0 ]
+if ping -c1 "$hosts" >/dev/null 2>&1
 then
-  echo $hosts Ok
+  echo "$hosts Ok"
 else
-  echo $hosts Not Okay
+  echo "$hosts Not Okay" >&2
+  exit 1
 fi

@@ -6,16 +6,28 @@
 
 # Check server connectivity
 
+set -uo pipefail
+
 IP_Lists='IP_Hosts.sh'
 
-for ip in $(cat "$IP_Lists")
-do
-    ping -c1 "$ip" >/dev/null 2>&1
+if [ ! -f "$IP_Lists" ]; then
+    echo "Error: IP list file '$IP_Lists' not found." >&2
+    exit 1
+fi
 
-    if [ $? -eq 0 ]
+exit_code=0
+
+while read -r ip
+do
+    [ -z "$ip" ] && continue
+
+    if ping -c1 "$ip" >/dev/null 2>&1
     then
         echo "$ip OK"
     else
         echo "$ip NOT OK"
+        exit_code=1
     fi
-done
+done < "$IP_Lists"
+
+exit "$exit_code"
