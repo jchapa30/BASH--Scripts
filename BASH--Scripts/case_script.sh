@@ -9,7 +9,7 @@ echo 'c = List users logged in'
 echo 'd = Check system uptime'
 echo
 
-read choices
+read -r choices
 
 case $choices in
     a) date ;;
