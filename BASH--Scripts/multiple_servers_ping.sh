@@ -6,16 +6,31 @@
 
 # Check server connectivity
 
-IP_Lists='IP_Hosts.sh'
+IP_LIST='IP_Hosts.sh'
 
-for ip in $(cat "$IP_Lists")
+if [ ! -f "$IP_LIST" ]
+then
+    echo "Host list not found: $IP_LIST" >&2
+    exit 1
+fi
+
+while IFS= read -r host || [ -n "$host" ]
 do
-    ping -c1 "$ip" >/dev/null 2>&1
-
-    if [ $? -eq 0 ]
+    if [ -z "$host" ] || [[ "$host" == \#* ]]
     then
-        echo "$ip OK"
-    else
-        echo "$ip NOT OK"
+        continue
     fi
-done
+
+    if [[ ! "$host" =~ ^[A-Za-z0-9][A-Za-z0-9._:-]{0,252}$ ]]
+    then
+        echo "Skipping invalid host: $host" >&2
+        continue
+    fi
+
+    if ping -c1 "$host" >/dev/null 2>&1
+    then
+        echo "$host OK"
+    else
+        echo "$host NOT OK"
+    fi
+done < "$IP_LIST"

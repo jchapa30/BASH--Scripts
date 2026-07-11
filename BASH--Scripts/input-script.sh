@@ -4,13 +4,12 @@
 #Date: 6/6/26
 #Description:
 
-a=$("hostname")
+a=$(hostname)
 
-echo Hello $USER,your hostname is $a.
+echo "Hello $USER, your hostname is $a."
 echo
-echo What is your name?
-read b
+echo "What is your name?"
+read -r name
 echo
-echo Hello $b
+echo "Hello $name"
 echo
-
