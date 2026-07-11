@@ -6,7 +6,7 @@
 
 # Check server connectivity
 
-IP_Lists='IP_Hosts.sh'
+IP_Lists="${IP_LISTS:-IP_Hosts.sh}"
 
 for ip in $(cat "$IP_Lists")
 do
